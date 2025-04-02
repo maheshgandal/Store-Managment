@@ -283,16 +283,16 @@ public class ClientAplication
                     {
                         obj=ps.getAllProduct();
 
-                        topBottomLine(89);
-                        System.out.printf("| %-5s | %-25s | %-25s | %-8s | %-10s |\n","Id","Name","Company","Quantity","Price");
-                        topBottomLine(89);
+                        topBottomLine(78);
+                        System.out.printf("| %-5s | %-25s | %-25s | %-10s |\n","Id","Name","Company","Price");
+                        topBottomLine(78);
 
                         for(Object ob:obj)
                         {
                             Product pro=(Product)ob;
-                            System.out.printf("| %-5d | %-25s | %-25s | %-8d | %-10.2f |\n",pro.getId(),pro.getName(),pro.getCompany(),pro.getQty(),pro.getPrice());
+                            System.out.printf("| %-5d | %-25s | %-25s | %-10.2f |\n",pro.getId(),pro.getName(),pro.getCompany(),pro.getPrice());
                         }
-                        topBottomLine(89);
+                        topBottomLine(78);
 
                         System.out.println("Enter Product id you want to buy");
                         int pid=sc.nextInt();
@@ -323,15 +323,19 @@ public class ClientAplication
                 case 10:
                     List order=cs.getAllOrder();
 
-                    topBottomLine(78);
-                    System.out.printf("| %-5s | %-5s | %-12s | %-15s | %-25s |\n","Id","C_Id","Date","Total Price","Product List");
-                    topBottomLine(78);
+                    topBottomLine(93);
+                    System.out.printf("| %-5s | %-5s | %-12s | %-40s | %-15s |\n","Id","C_Id","Date","Product List","Total Price");
+                    System.out.printf("| %-5s | %-5s | %-12s |","","","");
+                    System.out.print("------------------------------------------");
+                    System.out.printf("| %-15s |\n","");
+                    System.out.printf("| %-5s | %-5s | %-12s |","","","");
+                    System.out.printf(" %-25s | %-12s | %-15s |\n","Product Name","Price","");
+                    topBottomLine(93);
 
                     for(Object ob:order)
                     {
                         Order o=(Order)ob;
-                        System.out.printf("| %-5d | %-5d | %-12s | %-15.2f |",o.getId(),o.getCid(),o.getDate(),o.getTotalprice());
-
+                        
                         List pl=o.getProductlist();
                         boolean flag=true;
                         for(Object object:pl)
@@ -340,13 +344,17 @@ public class ClientAplication
 
                             if(flag)
                             {
-                                System.out.printf(" %-25s |\n",product.getName());
+                                System.out.printf("| %-5d | %-5d | %-12s |",o.getId(),o.getCid(),o.getDate());
+                                System.out.printf(" %-25s | %-12.2f | %-15.2f |\n",product.getName(),product.getPrice(),o.getTotalprice());
                                 flag=false;
                             }
                             else
-                                System.out.printf("| %-5s | %-5s | %-12s | %-15s | %-25s |\n","","","","",product.getName());
+                            {
+                                System.out.printf("| %-5s | %-5s | %-12s |","","","");
+                                System.out.printf(" %-25s | %-12.2f | %-15s |\n",product.getName(),product.getPrice(),"");
+                            }
                         }
-                        topBottomLine(78);
+                        topBottomLine(93);
                     }
                     break;
 
@@ -365,15 +373,19 @@ public class ClientAplication
 
                         order=cust.getOrderlist();
 
-                        topBottomLine(70);
-                        System.out.printf("| %-5s | %-12s | %-15s | %-25s |\n","Id","Date","Total Price","Product List");
-                        topBottomLine(70);
+                        topBottomLine(85);
+                        System.out.printf("| %-5s | %-12s | %-40s | %-15s |\n","Id","Date","Product List","Total Price");
+                        System.out.printf("| %-5s | %-12s |","","");
+                        System.out.print("------------------------------------------");
+                        System.out.printf("| %-15s |\n","");
+                        System.out.printf("| %-5s | %-12s |","","");
+                        System.out.printf(" %-25s | %-12s | %-15s |\n","Product Name","Price","");
+                        topBottomLine(85);
 
                         for(Object ob:order)
                         {
                             Order o=(Order)ob;
-                            System.out.printf("| %-5d | %-12s | %-15.2f |",o.getId(),o.getDate(),o.getTotalprice());
-
+                            
                             List pl=o.getProductlist();
                             boolean flag=true;
                             for(Object object:pl)
@@ -382,13 +394,17 @@ public class ClientAplication
 
                                 if(flag)
                                 {
-                                    System.out.printf(" %-25s |\n",product.getName());
+                                    System.out.printf("| %-5d | %-12s |",o.getId(),o.getDate());
+                                    System.out.printf(" %-25s | %-12.2f | %-15.2f |\n",product.getName(),product.getPrice(),o.getTotalprice());
                                     flag=false;
                                 }
                                 else
-                                    System.out.printf("| %-5s | %-12s | %-15s | %-25s |\n","","","",product.getName());
+                                {
+                                    System.out.printf("| %-5s | %-12s |","","");
+                                    System.out.printf(" %-25s | %-12.2f | %-15s |\n",product.getName(),product.getPrice(),"");
+                                }
                             }
-                            topBottomLine(70);
+                            topBottomLine(85);
                         }
                         System.out.println("===============================================================");
                     }
